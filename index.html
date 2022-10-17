@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/dist/css/stylesheet.css">
+</head>
+<body>
+    <div class="container calculator-size">
+        <div class="col-md-6 col-12">
+            <div class="card w-100 bg-black">
+                <div class="card-body">
+                    <h5 class="text-white fs-3 mb-3">Calculator</h5>
+                    <input type="text" class="form-control w-100 fw-bolder fs-1" id="calculator_result" value="0">
+                    <div class="row mt-3">
+                        <div class="col-3 p-3">
+                            <button class="btn btn-secondary py-3 w-100 fw-bold" value="clear" onclick="calculator(event)">
+                                C
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value=" % " onclick="calculator(event)">
+                                %
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-danger py-3 w-100 fw-bold" value="delete" onclick="calculator(event)">
+                                D
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-dark py-3 w-100 fw-bold" value=" / " onclick="calculator(event)">
+                                /
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="7" onclick="calculator(event)">
+                                7
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="8" onclick="calculator(event)">
+                                8
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="9" onclick="calculator(event)">
+                                9
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-dark py-3 w-100 fw-bold" value=" * " onclick="calculator(event)">
+                                *
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="4" onclick="calculator(event)">
+                                4
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="5" onclick="calculator(event)">
+                                5
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="6" onclick="calculator(event)">
+                                6
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-dark py-3 w-100 fw-bold" value=" - " onclick="calculator(event)">
+                                -
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="1" onclick="calculator(event)">
+                                1
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="2" onclick="calculator(event)">
+                                2
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="3" onclick="calculator(event)">
+                                3
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-dark py-3 w-100 fw-bold" value=" + " onclick="calculator(event)">
+                                +
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="00" onclick="calculator(event)">
+                                00
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="0" onclick="calculator(event)">
+                                0
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-light py-3 w-100 fw-bold" value="." onclick="calculator(event)">
+                                .
+                            </button>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button class="btn btn-dark py-3 w-100 fw-bold" value="=" onclick="calculator(event)">
+                                =
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var display_value = '';
+
+        function calculator(event) {
+            var button_value = event.target.value;
+
+            if (button_value == "clear" || button_value == "delete" || button_value == "=") {
+                if (button_value == "clear") {
+                    document.getElementById("calculator_result").value = 0;
+                    display_value = 0;
+                } else if (button_value == "delete") {
+                    display_value = display_value.slice(0, -1);
+                    if(display_value == '') {
+                        document.getElementById("calculator_result").value = 0;
+                    } else {
+                        document.getElementById("calculator_result").value = display_value;
+                    }
+                } else {
+                    var calculation = document.getElementById("calculator_result").value;
+                    document.getElementById("calculator_result").value = eval(calculation)
+                    display_value = eval(calculation)
+                }
+            } else {
+                if(display_value == 0) {
+                    display_value = button_value;
+                } else {
+                    display_value = '' + display_value + button_value
+                }
+                document.getElementById("calculator_result").value = display_value
+            }
+            console.log(button_value);
+        }
+    </script>
+</body>
+</html>
